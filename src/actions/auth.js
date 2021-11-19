@@ -9,7 +9,8 @@ export const startLogin = (email, password) => {
         try {
             const resp = await fetchWithNotToken({ email, password }, 'POST', 'auth')
             const data = await resp.json()
-
+            console.log(resp)
+            console.log(data)
             if (data.ok) {
                 localStorage.setItem('token', data.token)
                 localStorage.setItem('tokenDateStart', new Date().getTime())

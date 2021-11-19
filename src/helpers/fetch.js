@@ -2,7 +2,7 @@ const baseUrl = process.env.REACT_APP_API_URL
 
 export const fetchWithNotToken = (data, method = 'GET', endPoind) => {
     const url = `${baseUrl}${endPoind}`
-
+    console.log(url)
     if (method === 'GET') {
         return fetch(url)
     }
