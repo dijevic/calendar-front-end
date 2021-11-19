@@ -1,0 +1,97 @@
+body,
+html {
+  width: 100%;
+  height: 100vh;
+}
+
+.calendar-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-flow: column;
+}
+
+/* Modal */
+.ReactModalPortal > div {
+  opacity: 0;
+}
+
+.ReactModalPortal .ReactModal__Overlay {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 999;
+}
+
+.modal-fondo {
+  background-color: rgba(0, 0, 0, 0.3);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  position: fixed;
+}
+
+.ReactModalPortal .ReactModal__Overlay--after-open {
+  opacity: 1;
+}
+
+.ReactModalPortal .ReactModal__Overlay--before-close {
+  opacity: 0;
+}
+
+.modal {
+  background: white;
+  border-radius: 5px;
+  color: rgb(51, 51, 51);
+  display: inline;
+  max-height: 620px;
+  max-width: 500px;
+  outline: none;
+  padding: 10px;
+}
+
+/* datepicker */
+
+.react-datetime-picker input:focus {
+  outline: none;
+}
+.react-datetime-picker__wrapper {
+  border: none;
+}
+.fab {
+  border-radius: 50%;
+  font-size: 30px;
+  padding: 25px;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+}
+.fab-danger {
+  padding: 25px;
+  position: fixed;
+  bottom: 25px;
+  left: 25px;
+}
+
+.spinner {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  align-items: center;
+  flex-direction: column;
+  left: 50%;
+  top: 50%;
+}
+.loader__span {
+  margin-top: 25px;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.tokenEndedText {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
