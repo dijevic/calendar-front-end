@@ -15,7 +15,7 @@ export const Login = () => {
 
     const dispatch = useDispatch()
     const [tokenEnded, setTokenEnded] = useState(false)
-    const { checking, loading } = useSelector(state => state.auth)
+    const { loading } = useSelector(state => state.auth)
     const initialoginState = {
         LoginEmail: '',
         loginPassword: ''
