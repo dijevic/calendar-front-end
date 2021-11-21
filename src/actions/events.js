@@ -36,6 +36,7 @@ export const starAddNewEvent = (event) => {
 
 export const loadEventsStarter = () => {
     return async (dispatch) => {
+
         try {
             const resp = await fetchWithToken(false, 'GET', 'events')
             const data = await resp.json()
@@ -136,3 +137,4 @@ export const unSetSelectedSlot = () => ({
 })
 
 export const cleanCalendar = () => ({ type: types.calendarCleaner })
+

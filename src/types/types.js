@@ -24,5 +24,8 @@ export const types = {
     authLogOut: `[Calendar] auth log out`,
     authStartRenewalToken: `[Calendar] auth  renew token`,
 
+    authSetLoading: `[Calendar] auth set loading`,
+    authUnSetLoading: `[Calendar] auth Unset loading`,
+
     authUiError: `[ui][auth] error`,
 }

@@ -4,8 +4,11 @@ import { CalendarApp } from './CalendarApp';
 
 ReactDOM.render(
     <CalendarApp />,
-  
-  document.getElementById('root')
-);
+
+    document.getElementById('root')
+)
+
+
+
 
 

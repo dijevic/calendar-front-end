@@ -19,7 +19,6 @@ import { PublicRoute } from './publicRoute';
 export const AppRouter = () => {
     const dispatch = useDispatch()
 
-    console.log(process.env)
     const { checking, user } = useSelector(state => state.auth)
 
 

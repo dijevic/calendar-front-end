@@ -6,11 +6,11 @@ import { cleanCalendar } from "./events"
 
 export const startLogin = (email, password) => {
     return async (dispatch) => {
+
+        dispatch(setLoading())
         try {
             const resp = await fetchWithNotToken({ email, password }, 'POST', 'auth')
             const data = await resp.json()
-            console.log(resp)
-            console.log(data)
             if (data.ok) {
                 localStorage.setItem('token', data.token)
                 localStorage.setItem('tokenDateStart', new Date().getTime())
@@ -33,7 +33,7 @@ export const startLogin = (email, password) => {
 }
 export const startRegister = (email, password, name) => {
     return async (dispatch) => {
-
+        dispatch(setLoading())
         try {
 
 
@@ -114,6 +114,8 @@ export const startLogOut = () => {
 }
 
 const logOut = () => ({ type: types.authLogOut })
+
+const setLoading = () => ({ type: types.authSetLoading })
 
 
 

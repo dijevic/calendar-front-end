@@ -15,7 +15,7 @@ export const Login = () => {
 
     const dispatch = useDispatch()
     const [tokenEnded, setTokenEnded] = useState(false)
-    const { checking } = useSelector(state => state.auth)
+    const { checking, loading } = useSelector(state => state.auth)
     const initialoginState = {
         LoginEmail: '',
         loginPassword: ''
@@ -81,14 +81,12 @@ export const Login = () => {
         // TODO:distpach de registro
         dispatch(startRegister(registerEmail, registerPassword, registerName))
 
-
-
-
     }
-
-    if (checking) {
+    if (loading) {
         return (<Spinner />)
     }
+
+
 
 
     return (
@@ -110,6 +108,7 @@ export const Login = () => {
                                 name="LoginEmail"
                                 value={LoginEmail}
                                 onChange={handleLoginChange}
+
                             />
                         </div>
                         <div className="form-group">
