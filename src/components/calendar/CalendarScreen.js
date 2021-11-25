@@ -58,7 +58,6 @@ export const CalendarScreen = () => {
         dispatch(unSetActiveEvent())
         dispatch(actionOpenModal())
         dispatch(setSelectedSlot(e))
-        // console.log(e)
     }
     const eventStyleGetter = (e) => {
 
@@ -73,7 +72,7 @@ export const CalendarScreen = () => {
 
     }
     return (
-        <div className="calendar-container">
+        <div className="calendar-container eventAnimation">
             <Navbar />
             <Calendar
                 localizer={localizer}

@@ -7,7 +7,7 @@ export const PublicRoute = ({ component: Component, isAuth, ...rest }) => {
         <Route {...rest} component={(props) => (
 
             (isAuth)
-                ? <Redirect to="/" />
+                ? <Redirect to="/calendar" />
                 : <Component {...props} />
         )
         } />

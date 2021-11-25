@@ -1,6 +1,10 @@
 export const types = {
     modalOpen: `[ui] modal open`,
     modalClose: `[ui] modal close`,
+    uiLoading: `[ui] modal loading`,
+
+    modeProfile: `[ui] mode profile`,
+    modeEvent: `[ui] mode event`,
 
     eventStartAddNewEvent: `[ui] event start add new event`,
     eventLoadEvents: `[ui] event load events`,

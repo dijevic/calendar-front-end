@@ -29,3 +29,20 @@ export const fetchWithToken = (data, method = 'GET', endPoind) => {
         headers: { 'Content-Type': 'application/json', 'x-token': token }
     })
 }
+export const fetchWithResetToken = (data, method = 'GET', endPoind, token) => {
+    const url = `${baseUrl}${endPoind}`
+
+    return fetch(url, {
+        method,
+        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json', 'reset-token': token }
+    })
+}
+export const fetchWithRegistrationToken = (method = 'GET', endPoind, token) => {
+    const url = `${baseUrl}${endPoind}`
+
+    return fetch(url, {
+        method,
+        headers: { 'Content-Type': 'application/json', 'registration-token': token }
+    })
+}

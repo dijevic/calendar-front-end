@@ -1,13 +1,14 @@
 import Swal from "sweetalert2"
-import { fetchWithNotToken, fetchWithToken } from "../helpers/fetch"
+import { fetchWithNotToken, fetchWithRegistrationToken, fetchWithResetToken, fetchWithToken } from "../helpers/fetch"
 import { types } from "../types/types"
 import { cleanCalendar } from "./events"
 
 
-export const startLogin = (email, password) => {
+export const startLogin = (email, password, setLoading) => {
     return async (dispatch) => {
 
-        dispatch(setLoading())
+        setLoading(true)
+
         try {
             const resp = await fetchWithNotToken({ email, password }, 'POST', 'auth')
             const data = await resp.json()
@@ -19,8 +20,11 @@ export const startLogin = (email, password) => {
                     name: data.name
                 }
                 dispatch(login(usuario))
+
             } else {
+
                 Swal.fire('Error en el login :(', 'error en el password o email', 'error')
+                setLoading(false)
             }
 
 
@@ -31,25 +35,77 @@ export const startLogin = (email, password) => {
         }
     }
 }
-export const startRegister = (email, password, name) => {
+export const startRegister = (token, setLoading, history, setRegistrationCompleted) => {
     return async (dispatch) => {
-        dispatch(setLoading())
+        setLoading(true)
+
         try {
 
 
-            const resp = await fetchWithNotToken({ email, password, name }, 'POST', 'auth/register')
+            const resp = await fetchWithRegistrationToken('POST', 'auth/register', token)
             const data = await resp.json()
             if (data.ok) {
                 localStorage.setItem('token', data.token)
-
                 localStorage.setItem('tokenDateStart', new Date().getTime())
                 const usuario = {
                     id: data.userId,
                     name: data.name
                 }
-                dispatch(login(usuario))
+                setLoading(false)
+                setRegistrationCompleted(true)
+
+                setTimeout(() => {
+                    dispatch(login(usuario))
+
+                }, 1000);
+
             } else {
-                Swal.fire('Error en el registro :(', data.msg, 'error')
+                setLoading(false)
+                // Swal.fire('Error en el registro :(', data.msg, 'error')
+                Swal.fire({
+                    title: `something goes wrong `,
+                    icon: `error`,
+                    html: `<i class="fas fa-dizzy iconError"></i>`
+                })
+                history.replace('/auth')
+            }
+
+        } catch (e) {
+            console.log(e)
+        }
+    }
+}
+
+
+
+export const startChangePassword = (password, token, setLoading, history) => {
+    return async (dispatch) => {
+        setLoading(true)
+
+        try {
+            const resp = await fetchWithResetToken({ password }, 'PUT', 'auth/change-password', token)
+            const data = await resp.json()
+
+
+            if (data.ok) {
+                localStorage.setItem('token', data.token)
+                localStorage.setItem('tokenDateStart', new Date().getTime())
+                const usuario = {
+                    id: data.id,
+                    name: data.name
+                }
+
+                dispatch(login(usuario))
+                setLoading(false)
+
+            } else {
+                Swal.fire({
+                    title: `something goes wrong `,
+                    icon: `error`,
+                    html: `<i class="fas fa-dizzy iconError"></i>`
+                })
+                setLoading(false)
+                history.replace('/auth')
             }
 
 
@@ -84,7 +140,6 @@ export const startChecking = () => {
                 dispatch(login(usuario))
 
             } else {
-                console.log(data)
                 dispatch(finishChecking())
                 // lanzar mensaje
             }
@@ -115,7 +170,7 @@ export const startLogOut = () => {
 
 const logOut = () => ({ type: types.authLogOut })
 
-const setLoading = () => ({ type: types.authSetLoading })
+
 
 
 

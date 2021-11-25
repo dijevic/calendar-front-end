@@ -6,15 +6,18 @@ import {
     Switch,
     Redirect,
 
+
 } from "react-router-dom";
 
 import { finishChecking, startChecking } from '../actions/auth';
-import { Login } from "../components/auth/Login";
 
 import { CalendarScreen } from "../components/calendar/CalendarScreen";
 import { Spinner } from '../components/ui/Loader';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './publicRoute';
+
+import { AuthRouter } from './authRouter';
+
 
 export const AppRouter = () => {
     const dispatch = useDispatch()
@@ -45,22 +48,25 @@ export const AppRouter = () => {
             <div>
                 <Switch>
                     <PublicRoute
-                        path="/login"
-                        exact
-                        component={Login}
+                        path="/auth"
+                        component={AuthRouter}
                         isAuth={user}>
 
                     </PublicRoute>
 
                     <PrivateRoute
-                        path="/"
+                        path="/calendar"
                         exact
                         component={CalendarScreen}
                         isAuth={user}>
 
                     </PrivateRoute>
 
-                    <Redirect to="/login" />
+
+
+
+
+                    <Redirect to="/auth/login" />
 
 
                 </Switch>

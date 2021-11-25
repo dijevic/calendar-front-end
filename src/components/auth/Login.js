@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import validator from 'validator'
-// import moment from 'moment'
-import { useDispatch, useSelector } from 'react-redux';
-import { startLogin, startRegister } from '../../actions/auth';
+import { useDispatch } from 'react-redux';
+import { startLogin } from '../../actions/auth';
 import { UseForm } from '../../hooks/useForm';
 
 import './login.css';
 import Swal from 'sweetalert2';
 import { Spinner } from '../ui/Loader';
+import { Link } from 'react-router-dom';
+import { userRegistration } from '../../helpers/registrationUser';
+
 
 export const Login = () => {
 
@@ -15,7 +17,7 @@ export const Login = () => {
 
     const dispatch = useDispatch()
     const [tokenEnded, setTokenEnded] = useState(false)
-    const { loading } = useSelector(state => state.auth)
+    const [loading, setLoading] = useState(false)
     const initialoginState = {
         LoginEmail: '',
         loginPassword: ''
@@ -27,10 +29,7 @@ export const Login = () => {
         registerName: '',
     }
 
-    // variables de Datetoken y manejo del  vencimiento
-    // const tokenDate = JSON.parse(localStorage.getItem('tokenDateStart'))
-    // const tokenDateEnding = moment(tokenDate).add(2, 'hours')
-    // const today = moment().toDate()
+
 
 
     useEffect(() => {
@@ -47,8 +46,8 @@ export const Login = () => {
 
 
 
-    const [stateLoginValues, handleLoginChange] = UseForm(initialoginState)
-    const [stateRegisterValues, handleRegisterChange] = UseForm(initialRegisterState)
+    const [stateLoginValues, handleLoginChange, resetLogin] = UseForm(initialoginState)
+    const [stateRegisterValues, handleRegisterChange, resetRegister] = UseForm(initialRegisterState)
 
     const { LoginEmail, loginPassword } = stateLoginValues
 
@@ -57,7 +56,8 @@ export const Login = () => {
     const handleLogin = (e) => {
         e.preventDefault()
         // ca hago mi login 
-        dispatch(startLogin(LoginEmail, loginPassword))
+        dispatch(startLogin(LoginEmail, loginPassword, setLoading))
+        resetLogin()
     }
     const handleRegister = (e) => {
         e.preventDefault()
@@ -79,7 +79,10 @@ export const Login = () => {
 
 
         // TODO:distpach de registro
-        dispatch(startRegister(registerEmail, registerPassword, registerName))
+        // dispatch(startRegister(registerEmail, registerPassword, registerName))
+
+        userRegistration(registerName, registerEmail, registerPassword, setLoading)
+        resetRegister()
 
     }
     if (loading) {
@@ -91,21 +94,25 @@ export const Login = () => {
 
     return (
 
-        <div className="container login-container">
+        <div className="container login-container ">
 
             {
                 tokenEnded && <p className="tokenEndedText">Sesion vencida por falta de actividad</p>
             }
             <div className="row">
-                <div className="col-md-6 login-form-1">
+                <div className="col-md-6 login-form-1 ">
                     <h3>Ingreso</h3>
-                    <form onSubmit={handleLogin}>
-                        <div className="form-group">
+
+                    <i className="far fa-user-circle userIcon "></i>
+                    <form onSubmit={handleLogin} >
+                        <div className="form-group ">
+
                             <input
                                 type="text"
                                 className="form-control"
                                 placeholder="Correo"
                                 name="LoginEmail"
+                                autoComplete="off"
                                 value={LoginEmail}
                                 onChange={handleLoginChange}
 
@@ -129,18 +136,22 @@ export const Login = () => {
                             />
                         </div>
                     </form>
+                    <Link className="link-forgot-pasword" to="/auth/forgot-password">Olvide mi contraseña</Link>
+
                 </div>
 
-                <div className="col-md-6 login-form-2">
+                <div className="col-md-6 login-form-2 ">
                     <h3>Registro</h3>
-                    <form onSubmit={handleRegister}>
-                        <div className="form-group">
+                    <i className="fas fa-id-card userRegisterIcon"></i>
+                    <form onSubmit={handleRegister} >
+                        <div className="form-group ">
 
                             <input
                                 type="text"
                                 className="form-control"
                                 placeholder="Nombre"
                                 name="registerName"
+                                autoComplete="off"
                                 value={registerName}
                                 onChange={handleRegisterChange}
                             />
@@ -151,6 +162,7 @@ export const Login = () => {
                                 className="form-control"
                                 placeholder="Correo"
                                 name="registerEmail"
+                                autoComplete="off"
                                 value={registerEmail}
                                 onChange={handleRegisterChange}
                             />

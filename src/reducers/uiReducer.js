@@ -3,6 +3,7 @@ import { types } from "../types/types";
 const initialState = {
     modalOpen: false,
     uiError: null
+
 }
 
 export const uiReducer = (state = initialState, action) => {
@@ -24,6 +25,8 @@ export const uiReducer = (state = initialState, action) => {
                 uiError: action.payload
 
             }
+
+
 
 
         default:

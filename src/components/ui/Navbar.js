@@ -6,22 +6,29 @@ export const Navbar = () => {
 
 
     const dispatch = useDispatch()
-    const { name } = useSelector(state => state.auth.user)
+    let { name } = useSelector(state => state.auth.user)
+
+    name = name.split(' ').map((w) => w = w[0].toUpperCase() + w.slice(1)).join(' ')
+
+
+
+
+
+
+
+
 
 
     const handleLogOut = () => {
         dispatch(startLogOut())
     }
+
     return (
         <div>
             <nav className="navbar navbar-dark bg-dark mb-4">
 
-                <span className="navbar-brand">{name.toUpperCase()}</span>
-                <button
-                    className="btn btn-primary ">
+                <span className="navbar-brand">{name}</span>
 
-                    Profile
-                </button>
                 <button
                     onClick={handleLogOut}
                     className="btn btn-outline-danger">

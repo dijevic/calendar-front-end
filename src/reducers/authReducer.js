@@ -39,6 +39,11 @@ export const authReducer = (state = initialState, action) => {
                 ...state,
                 loading: true
             }
+        case types.authUnSetLoading:
+            return {
+                ...state,
+                loading: false
+            }
 
         default:
             return state;

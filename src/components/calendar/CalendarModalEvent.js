@@ -25,6 +25,8 @@ export const CalendarModalEvent = () => {
 
 
     const { activeEvent, onSlotSelected } = useSelector(state => state.calendar)
+
+
     const dispatch = useDispatch()
 
     const { start: startOnSelected, end: endOnSelected } = onSlotSelected
@@ -72,7 +74,7 @@ export const CalendarModalEvent = () => {
         }
 
 
-    }, [activeEvent, startOnSelected, endOnSelected, onSlotSelected])
+    }, [activeEvent, startOnSelected, onSlotSelected, endOnSelected])
 
 
 
@@ -144,8 +146,12 @@ export const CalendarModalEvent = () => {
     }
 
 
+
+
+
+
     return (
-        <div>
+        <div >
             <h1>{(!activeEvent) ? `Nuevo evento` : `Editar evento`}</h1>
             <hr />
             <form onSubmit={handleFormSubmit} className="container ">

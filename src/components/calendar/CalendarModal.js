@@ -23,21 +23,27 @@ export const CalendarModal = () => {
     const dispatch = useDispatch()
 
     const closeModal = () => {
+
         dispatch(actionCloseModal())
         dispatch(unSetActiveEvent())
         dispatch(unSetSelectedSlot())
 
     }
 
+
+
     return (
         <div>
             <Modal
                 isOpen={modalOpen}
-                // onAfterOpen={afterOpenModal}
+
+                shouldCloseOnEsc={true}
+
                 onRequestClose={closeModal}
                 style={customStyles}
                 className="modal"
                 closeTimeoutMS={200}
+                openTimeoutMS={200}
                 overlayClassName="modal-fondo"
             >
                 <CalendarModalEvent />

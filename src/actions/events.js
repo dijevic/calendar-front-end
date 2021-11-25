@@ -1,4 +1,5 @@
 import Swal from "sweetalert2";
+import moment from 'moment'
 import { fetchWithToken } from "../helpers/fetch";
 import { types } from "../types/types";
 import { parseDate } from "../helpers/parseDate";
@@ -19,7 +20,6 @@ export const starAddNewEvent = (event) => {
                 event.usuario = user;
                 event.uid = data.newEvent.uid;
                 dispatch(eventAddNew(event))
-                console.log(event)
 
             } else {
                 Swal.fire('error', `error creando el evento`, 'error')
@@ -40,6 +40,7 @@ export const loadEventsStarter = () => {
         try {
             const resp = await fetchWithToken(false, 'GET', 'events')
             const data = await resp.json()
+
 
             if (data.ok) {
                 const eventsParsed = parseDate(data.eventos)
@@ -124,14 +125,19 @@ export const eventUpdated = (event) => ({
     type: types.eventUpdate,
     payload: event
 })
-const eventDeleted = () => ({
+export const eventDeleted = () => ({
     type: types.eventDelete
 })
 
-export const setSelectedSlot = ({ start, end }) => ({
-    type: types.onselectSlot,
-    payload: { start, end }
-})
+export const setSelectedSlot = ({ start, end }) => {
+
+    start = moment(start).minutes(0).seconds(0).add(1, 'hours').toDate()
+    end = moment(start).minutes(0).seconds(0).add(2, 'hours').toDate()
+    return {
+        type: types.onselectSlot,
+        payload: { start, end }
+    }
+}
 export const unSetSelectedSlot = () => ({
     type: types.unSetOnselectSlot
 })

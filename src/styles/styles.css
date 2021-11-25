@@ -76,13 +76,12 @@ html {
 }
 
 .spinner {
+  width: 100%;
+  height: 100vh;
   display: flex;
   justify-content: center;
-  position: fixed;
   align-items: center;
   flex-direction: column;
-  left: 50%;
-  top: 50%;
 }
 .loader__span {
   margin-top: 25px;
@@ -94,4 +93,138 @@ html {
   text-align: center;
   font-size: 32px;
   margin-bottom: 20px;
+}
+
+.eventAnimation {
+  animation-name: pulse;
+  animation-duration: 1s;
+  animation-iteration-count: initial;
+}
+
+.eventAnimationEvents {
+  animation-name: bounceInLeft;
+  animation-duration: 1.3s;
+  animation-iteration-count: initial;
+}
+
+.centered {
+  margin: 50px auto;
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  height: 100%;
+}
+.button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.button input {
+  width: 20%;
+}
+
+.welcomeScreen {
+  min-width: 100%;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.welcomeScreen h1 {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-size: 62px;
+  line-height: 70px;
+  font-style: italic;
+  margin-bottom: 20px;
+}
+
+.welcomeScreen > p {
+  font-size: 28px;
+  line-height: 35px;
+}
+
+p .fa-hand-point-right {
+  font-size: 20px;
+}
+.link-forgot-pasword {
+  margin-left: 10%;
+}
+
+.userIcon,
+.emailIcon,
+.passwordIcon {
+  margin: 0px auto;
+  display: block;
+  font-size: 70px;
+  color: #0062cc;
+  text-align: center;
+  margin-top: 20px;
+}
+.passwordIcon {
+  color: #000;
+}
+.userRegisterIcon {
+  margin: 0px auto;
+  display: block;
+  font-size: 70px;
+  color: #fff;
+  text-align: center;
+  margin-top: 20px;
+}
+.registerSuccess {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.registerSuccess i {
+  display: block;
+  font-size: 80px;
+  line-height: 92px;
+  color: #0062cc;
+}
+.registerSuccess p {
+  margin-top: 25px;
+  font-size: 32px;
+  line-height: 38px;
+  color: #000;
+}
+.iconError {
+  margin: 0px auto;
+  display: block;
+  font-size: 50px;
+  color: #000;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.info-text {
+  margin-top: 25px;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000;
+  text-align: center;
+}
+
+.eventAnimation2 {
+  animation-name: bounceInUp;
+  animation-duration: 1s;
+  animation-iteration-count: initial;
+}
+.eventAnimation3 {
+  animation-name: bounceInRight;
+  animation-duration: 1.3s;
+  animation-iteration-count: initial;
+}
+.eventAnimation4 {
+  animation-name: bounceInLeft;
+  animation-duration: 1.3s;
+  animation-iteration-count: initial;
 }

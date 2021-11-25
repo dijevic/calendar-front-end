@@ -2,7 +2,7 @@ import moment from 'moment'
 
 export const parseDate = (events = []) => {
 
-    return events.map(e => {
+    const eventsParsed = events.map(e => {
 
         return {
             ...e,
@@ -10,4 +10,8 @@ export const parseDate = (events = []) => {
             start: moment(e.start).toDate()
         }
     })
+
+
+
+    return eventsParsed
 }
