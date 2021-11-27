@@ -12,7 +12,7 @@ export const AddnewFab = () => {
             className="btn btn-primary fab"
             onClick={handleNewEvent}
         >
-            <i className="fa fa-plus"></i>
+            <i className="fa fa-plus "></i>
         </button>
     )
 }

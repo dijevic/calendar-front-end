@@ -1,7 +1,8 @@
 body,
 html {
   width: 100%;
-  height: 100vh;
+  height: 85vh;
+  font-family: "Karla";
 }
 
 .calendar-container {
@@ -227,4 +228,38 @@ p .fa-hand-point-right {
   animation-name: bounceInLeft;
   animation-duration: 1.3s;
   animation-iteration-count: initial;
+}
+
+.red {
+  background: red;
+}
+.link-my-profile {
+  padding-bottom: 10px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 400;
+  display: block;
+}
+
+.link-my-profile:hover {
+  text-decoration: none;
+  color: #0062cc;
+}
+
+.icon-navbar {
+  color: #0062cc;
+}
+.btn-primary {
+  background: #0062cc;
+}
+
+.password-input {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.password-input i {
+  /* margin-top: -5 */
+  position: absolute;
+  right: 10px;
 }

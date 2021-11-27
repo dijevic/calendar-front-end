@@ -18,6 +18,9 @@ export const Login = () => {
     const dispatch = useDispatch()
     const [tokenEnded, setTokenEnded] = useState(false)
     const [loading, setLoading] = useState(false)
+
+    const [showPasswordLogin, setshowPasswordLogin] = useState(false)
+    const [showPasswordRegister, setshowPasswordRegister] = useState(false)
     const initialoginState = {
         LoginEmail: '',
         loginPassword: ''
@@ -85,6 +88,13 @@ export const Login = () => {
         resetRegister()
 
     }
+
+    const handleShowPassword = () => {
+        setshowPasswordLogin(!showPasswordLogin)
+    }
+    const handleShowPasswordRegister = () => {
+        setshowPasswordRegister(!showPasswordRegister)
+    }
     if (loading) {
         return (<Spinner />)
     }
@@ -94,21 +104,22 @@ export const Login = () => {
 
     return (
 
-        <div className="container login-container ">
-
+        <div className="container login-container  ">
             {
                 tokenEnded && <p className="tokenEndedText">Sesion vencida por falta de actividad</p>
             }
+
             <div className="row">
                 <div className="col-md-6 login-form-1 ">
                     <h3>Ingreso</h3>
 
                     <i className="far fa-user-circle userIcon "></i>
                     <form onSubmit={handleLogin} >
+
                         <div className="form-group ">
 
                             <input
-                                type="text"
+                                type="email"
                                 className="form-control"
                                 placeholder="Correo"
                                 name="LoginEmail"
@@ -117,16 +128,22 @@ export const Login = () => {
                                 onChange={handleLoginChange}
 
                             />
+
                         </div>
-                        <div className="form-group">
+                        <div className="form-group password-input">
                             <input
-                                type="password"
+                                type={(showPasswordLogin) ? 'text' : 'password'}
                                 className="form-control"
                                 placeholder="Contraseña"
                                 name="loginPassword"
                                 value={loginPassword}
                                 onChange={handleLoginChange}
                             />
+                            <i
+                                onClick={handleShowPassword}
+                                className={(showPasswordLogin) ? 'fas fa-eye-slash' : 'far fa-eye'}>
+
+                            </i>
                         </div>
                         <div className="form-group">
                             <input
@@ -134,6 +151,7 @@ export const Login = () => {
                                 className="btnSubmit"
                                 value="Login"
                             />
+
                         </div>
                     </form>
                     <Link className="link-forgot-pasword" to="/auth/forgot-password">Olvide mi contraseña</Link>
@@ -167,26 +185,36 @@ export const Login = () => {
                                 onChange={handleRegisterChange}
                             />
                         </div>
-                        <div className="form-group">
+                        <div className="form-group password-input">
                             <input
-                                type="password"
+                                type={(showPasswordRegister) ? 'text' : 'password'}
                                 className="form-control"
                                 placeholder="Contraseña"
                                 name="registerPassword"
                                 value={registerPassword}
                                 onChange={handleRegisterChange}
                             />
+                            <i
+                                onClick={handleShowPasswordRegister}
+                                className={(showPasswordRegister) ? 'fas fa-eye-slash' : 'far fa-eye'}>
+
+                            </i>
                         </div>
 
-                        <div className="form-group">
+                        <div className="form-group password-input">
                             <input
-                                type="password"
+                                type={(showPasswordRegister) ? 'text' : 'password'}
                                 className="form-control"
                                 placeholder="Repita la contraseña"
                                 name="registerPassword2"
                                 value={registerPassword2}
                                 onChange={handleRegisterChange}
                             />
+                            <i
+                                onClick={handleShowPasswordRegister}
+                                className={(showPasswordRegister) ? 'fas fa-eye-slash' : 'far fa-eye'}>
+
+                            </i>
                         </div>
 
                         <div className="form-group">

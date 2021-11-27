@@ -13,15 +13,14 @@ import { Login } from '../components/auth/Login';
 
 export const AuthRouter = () => {
     return (
-        <div>
-            <Switch>
-                <Route path="/auth/login" component={Login} />
-                <Route path="/auth/forgot-password" component={ForgotPassword} />
-                <Route path="/auth/change-password/:id" component={ChangePassword} />
-                <Route path="/auth/finish-registration/:token" component={FinishRegistration} />
-                <Redirect exact to="/auth/login" />
-            </Switch>
 
-        </div>
+        <Switch>
+            <Route path="/auth/login" component={Login} />
+            <Route path="/auth/forgot-password" component={ForgotPassword} />
+            <Route path="/auth/change-password/:id" component={ChangePassword} />
+            <Route path="/auth/finish-registration/:token" component={FinishRegistration} />
+            <Redirect exact to="/auth/login" />
+        </Switch>
+
     )
 }

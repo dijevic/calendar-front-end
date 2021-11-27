@@ -32,4 +32,6 @@ export const types = {
     authUnSetLoading: `[Calendar] auth Unset loading`,
 
     authUiError: `[ui][auth] error`,
+
+    userChangeData: `[user] change data`,
 }

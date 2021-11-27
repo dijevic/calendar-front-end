@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useHistory, useParams } from 'react-router'
 import { startRegister } from '../../actions/auth'
 import { Spinner } from '../ui/Loader'
-import { SuccessRegistration } from './SuccessRegistration'
+import { SuccessProcess } from './SuccessProcess'
 
 export const FinishRegistration = () => {
 
@@ -26,7 +26,7 @@ export const FinishRegistration = () => {
     }
 
     if (registrationCompleted) {
-        return (<SuccessRegistration />)
+        return (<SuccessProcess message={'Email verificado !'} />)
     }
 
     return (

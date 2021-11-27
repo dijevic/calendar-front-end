@@ -44,6 +44,16 @@ export const authReducer = (state = initialState, action) => {
                 ...state,
                 loading: false
             }
+        case types.userChangeData:
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    name: action.payload
+                }
+
+            }
+
 
         default:
             return state;

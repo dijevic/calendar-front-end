@@ -78,7 +78,7 @@ export const startRegister = (token, setLoading, history, setRegistrationComplet
 
 
 
-export const startChangePassword = (password, token, setLoading, history) => {
+export const startChangePassword = (password, token, setLoading, history, setProcessOk) => {
     return async (dispatch) => {
         setLoading(true)
 
@@ -95,17 +95,57 @@ export const startChangePassword = (password, token, setLoading, history) => {
                     name: data.name
                 }
 
-                dispatch(login(usuario))
                 setLoading(false)
+                setProcessOk(true)
+                setTimeout(() => {
+                    dispatch(login(usuario))
+                }, 1000);
 
             } else {
                 Swal.fire({
-                    title: `something goes wrong `,
+                    title: `${data.msg} `,
                     icon: `error`,
                     html: `<i class="fas fa-dizzy iconError"></i>`
                 })
                 setLoading(false)
-                history.replace('/auth')
+            }
+
+
+
+
+        } catch (e) {
+            console.log(e)
+        }
+    }
+}
+
+
+export const startChangingUserData = (newData, setLoading,) => {
+    return async (dispatch) => {
+
+        setLoading(true)
+
+        try {
+            const resp = await fetchWithToken({ ...newData }, 'PUT', 'auth/update-user')
+            const data = await resp.json()
+
+            console.log(data)
+            if (data.ok) {
+                localStorage.setItem('token', data.token)
+                localStorage.setItem('tokenDateStart', new Date().getTime())
+
+                Swal.fire(
+                    'Great!',
+                    `${data.msg}`,
+                    'success'
+                )
+                setLoading(false)
+                dispatch(changeData(data.name))
+
+            } else {
+
+                Swal.fire('Error en el login :(', `${data.msg}`, 'error')
+                setLoading(false)
             }
 
 
@@ -169,6 +209,10 @@ export const startLogOut = () => {
 }
 
 const logOut = () => ({ type: types.authLogOut })
+
+
+
+const changeData = (data) => ({ type: types.userChangeData, payload: data })
 
 
 

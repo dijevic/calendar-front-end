@@ -7,6 +7,8 @@ import { useHistory, useParams } from 'react-router'
 import { useDispatch } from 'react-redux'
 import { startChangePassword } from '../../actions/auth'
 import { Spinner } from '../ui/Loader'
+import { SuccessProcess } from './SuccessProcess'
+import { Link } from 'react-router-dom'
 
 
 export const ChangePassword = () => {
@@ -22,6 +24,12 @@ export const ChangePassword = () => {
     }
     const [stateValues, handleInputChange] = UseForm(initialState)
     const [loading, setLoading] = useState(false)
+    const [processOk, setProcessOk] = useState(false)
+    const [showPassword, setshowPassword] = useState(false)
+
+    const handleShowPassword = () => {
+        setshowPassword(!showPassword)
+    }
 
     const { password1, password2 } = stateValues
 
@@ -32,13 +40,17 @@ export const ChangePassword = () => {
             return Swal.fire('error', 'las contraseñas deben de ser iguales', 'error')
         }
 
-        dispatch(startChangePassword(password1, token, setLoading, history))
+        dispatch(startChangePassword(password1, token, setLoading, history, setProcessOk))
 
 
 
     }
     if (loading) {
         return (<Spinner />)
+    }
+
+    if (processOk) {
+        return (<SuccessProcess message={'Contraseña cambiada con exito!'} />)
     }
     return (
         <div className="container eventAnimation2">
@@ -47,9 +59,10 @@ export const ChangePassword = () => {
                     <i className="fas fa-user-secret passwordIcon "></i>
                     <p className="mb-3 info-text">ingrese su nueva contraseña</p>
                     <form onSubmit={handleSubmit} >
-                        <div className="form-group">
+
+                        <div className="form-group password-input">
                             <input
-                                type="password"
+                                type={(showPassword) ? 'text' : 'password'}
                                 className="form-control"
                                 placeholder="Contraseña"
                                 name="password1"
@@ -57,10 +70,15 @@ export const ChangePassword = () => {
                                 onChange={handleInputChange}
 
                             />
+                            <i
+                                onClick={handleShowPassword}
+                                className={(showPassword) ? 'fas fa-eye-slash' : 'far fa-eye'}>
+
+                            </i>
                         </div>
-                        <div className="form-group">
+                        <div className="form-group password-input">
                             <input
-                                type="password"
+                                type={(showPassword) ? 'text' : 'password'}
                                 className="form-control"
                                 placeholder="Contraseña"
                                 name="password2"
@@ -68,6 +86,11 @@ export const ChangePassword = () => {
                                 onChange={handleInputChange}
 
                             />
+                            <i
+                                onClick={handleShowPassword}
+                                className={(showPassword) ? 'fas fa-eye-slash' : 'far fa-eye'}>
+
+                            </i>
                         </div>
 
 
@@ -79,6 +102,13 @@ export const ChangePassword = () => {
                         </div>
 
                     </form>
+                    <Link
+                        className="link-forgot-pasword"
+                        to="">
+
+                        <i className="fas fa-angle-double-left mr-2"></i>
+                        Volver atras</Link>
+
 
                 </div>
             </div>

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import moment from 'moment'
 import { Calendar, momentLocalizer } from 'react-big-calendar'
-import { Navbar } from '../ui/Navbar'
 import { messages } from '../../helpers/messages'
 import { CalendarEvent } from './CalendarEvent'
 import 'moment/locale/es'
@@ -72,8 +71,7 @@ export const CalendarScreen = () => {
 
     }
     return (
-        <div className="calendar-container eventAnimation">
-            <Navbar />
+        <div className="calendar-container ">
             <Calendar
                 localizer={localizer}
                 events={events}

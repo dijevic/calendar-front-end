@@ -17,6 +17,7 @@ import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './publicRoute';
 
 import { AuthRouter } from './authRouter';
+import { CalendarRouter } from './CalendarRouter';
 
 
 export const AppRouter = () => {
@@ -56,8 +57,7 @@ export const AppRouter = () => {
 
                     <PrivateRoute
                         path="/calendar"
-                        exact
-                        component={CalendarScreen}
+                        component={CalendarRouter}
                         isAuth={user}>
 
                     </PrivateRoute>

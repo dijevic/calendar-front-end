@@ -5,6 +5,7 @@ import { fetchForgotPassword } from '../../helpers/forgotPasswordFetch'
 import Swal from 'sweetalert2'
 import { Spinner } from '../ui/Loader'
 import { useHistory } from 'react-router'
+import { Link } from 'react-router-dom'
 
 
 export const ForgotPassword = () => {
@@ -36,6 +37,7 @@ export const ForgotPassword = () => {
 
     }
 
+
     if (loading) {
         return (<Spinner />)
     }
@@ -65,9 +67,19 @@ export const ForgotPassword = () => {
                                 type="submit"
                                 className="btnSubmit"
                                 value="enviar" />
+
                         </div>
 
                     </form>
+
+
+                    <Link
+                        className="link-forgot-pasword"
+                        to="">
+
+                        <i className="fas fa-angle-double-left mr-2"></i>
+                        Volver atras</Link>
+
 
                 </div>
             </div>
