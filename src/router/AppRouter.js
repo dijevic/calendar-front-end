@@ -11,7 +11,7 @@ import {
 
 import { finishChecking, startChecking } from '../actions/auth';
 
-import { CalendarScreen } from "../components/calendar/CalendarScreen";
+
 import { Spinner } from '../components/ui/Loader';
 import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './publicRoute';
