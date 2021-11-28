@@ -184,7 +184,7 @@ export const CalendarModalEvent = () => {
                         placeholder="Título del evento"
                         name="title"
                         autoComplete="off"
-                        value={title}
+                        value={title.toLocaleLowerCase()}
                         onChange={handleInputChange}
                     />
                     <small id="emailHelp" className="form-text text-muted">Una descripción corta</small>
@@ -197,7 +197,7 @@ export const CalendarModalEvent = () => {
                         placeholder="Notas"
                         rows="5"
                         name="notes"
-                        value={notes}
+                        value={notes.toLocaleLowerCase()}
                         onChange={handleInputChange}
                     ></textarea>
                     <small id="emailHelp" className="form-text text-muted">Información adicional</small>
