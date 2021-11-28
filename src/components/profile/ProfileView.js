@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
+import validator from 'validator'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { startChangingUserData } from '../../actions/auth'
 import { UseForm } from '../../hooks/useForm'
 import { Spinner } from '../ui/Loader'
+import Swal from 'sweetalert2'
 
 export const ProfileView = () => {
 
@@ -14,14 +16,22 @@ export const ProfileView = () => {
         password: ''
     }
 
-    const [stateValues, handleInputChange] = UseForm(initialState)
+    const [stateValues, handleInputChange, reset] = UseForm(initialState)
     const [loading, setLoading] = useState(false)
     const [showPassword, setshowPassword] = useState(false)
 
 
     const { name, password } = stateValues
-    const handleChangeInformation = () => {
+    const handleChangeInformation = (e) => {
+        e.preventDefault()
+        if (validator.isEmpty(name.trim())) {
+            reset()
+            return Swal.fire('error', 'el nombre no puede estar vacio', 'error')
+        }
+
         dispatch(startChangingUserData(stateValues, setLoading))
+
+
 
     }
 
@@ -61,20 +71,6 @@ export const ProfileView = () => {
                             />
 
                         </div>
-                        {/* <div className="form-group ">
-
-                            <input
-                                type="text"
-                                className="form-control"
-                                placeholder="Correo"
-                                name="email"
-                                autoComplete="off"
-                                value={email}
-                                onChange={handleInputChange}
-
-                            />
-
-                        </div> */}
                         <div className="form-group password-input">
                             <input
                                 type={(showPassword) ? 'text' : 'password'}

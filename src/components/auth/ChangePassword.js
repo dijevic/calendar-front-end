@@ -15,7 +15,7 @@ export const ChangePassword = () => {
 
     const history = useHistory()
     const dispatch = useDispatch()
-    const { id: token } = useParams()
+    const { token } = useParams()
 
     const initialState = {
         password1: '',

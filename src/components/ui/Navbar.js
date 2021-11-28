@@ -28,7 +28,9 @@ export const Navbar = () => {
 
     }, [history.location])
 
-    // name = name.split(' ').map((w) => w = w[0].toUpperCase() + w.slice(1)).join(' ')
+    name = name.split(' ').map((w) => w = w[0].toUpperCase() + w.slice(1)).join(' ')
+
+
 
 
 

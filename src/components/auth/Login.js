@@ -59,7 +59,7 @@ export const Login = () => {
     const handleLogin = (e) => {
         e.preventDefault()
         // ca hago mi login 
-        dispatch(startLogin(LoginEmail, loginPassword, setLoading))
+        dispatch(startLogin(LoginEmail.toLowerCase(), loginPassword, setLoading))
         resetLogin()
     }
     const handleRegister = (e) => {
