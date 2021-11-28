@@ -31,7 +31,7 @@ export const FinishRegistration = () => {
 
     return (
         <div className="welcomeScreen">
-            <h1 onClick={handleRegister} className="welcome__text">welcome !</h1>
+            <h1 className="welcome__text">welcome !</h1>
 
             <p className="mr-2">
                 Please click the following link to finish your registration

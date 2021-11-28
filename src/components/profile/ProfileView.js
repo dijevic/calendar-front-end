@@ -27,9 +27,17 @@ export const ProfileView = () => {
         if (validator.isEmpty(name.trim())) {
             reset()
             return Swal.fire('error', 'el nombre no puede estar vacio', 'error')
+        } else if (validator.isEmpty(password.trim())) {
+
+
+            Swal.fire('info', 'Solo se cambiara el nombre de usuario', 'info')
+            setTimeout(() => {
+
+            }, 800);
+        } else {
+            dispatch(startChangingUserData(stateValues, setLoading))
         }
 
-        dispatch(startChangingUserData(stateValues, setLoading))
 
 
 
