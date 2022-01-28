@@ -1,12 +1,15 @@
-body,
-html {
+body {
   width: 100%;
-  height: 85vh;
+  height: 100%;
   font-family: "Karla";
 }
-#root {
-  padding-top: 200px;
+body {
+  width: 100%;
+  min-height: 100vh;
+  font-family: "Karla";
+  padding-top: 220px;
 }
+
 .calendar-container {
   width: 100%;
   height: 100vh;
@@ -266,8 +269,8 @@ p .fa-hand-point-right {
   right: 10px;
 }
 
-@media screen and(min-width: 768px) {
-  #root {
+@media screen and (min-width: 768px) {
+  body {
     padding-top: 0;
   }
 }
