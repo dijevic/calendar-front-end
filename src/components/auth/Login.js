@@ -18,7 +18,7 @@ export const Login = () => {
     const dispatch = useDispatch()
     const [tokenEnded, setTokenEnded] = useState(false)
     const [loading, setLoading] = useState(false)
-    const [test, setTest] = useState(false)
+    // const [test, setTest] = useState(false)
 
     const [showPasswordLogin, setshowPasswordLogin] = useState(false)
     const [showPasswordRegister, setshowPasswordRegister] = useState(false)
