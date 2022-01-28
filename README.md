@@ -1,4 +1,4 @@
-<h1 align="center">  Tasky  App </h1>
+<h1 align="center">  Calendar  App </h1>
 <h3 color="red" align="center">A React app to organize my daily activities</h3>
 
  <br/>

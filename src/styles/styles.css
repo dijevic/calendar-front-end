@@ -4,7 +4,9 @@ html {
   height: 85vh;
   font-family: "Karla";
 }
-
+#root {
+  padding-top: 200px;
+}
 .calendar-container {
   width: 100%;
   height: 100vh;
@@ -262,4 +264,10 @@ p .fa-hand-point-right {
   /* margin-top: -5 */
   position: absolute;
   right: 10px;
+}
+
+@media screen and(min-width: 768px) {
+  #root {
+    padding-top: 0;
+  }
 }
